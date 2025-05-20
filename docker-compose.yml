@@ -15,6 +15,7 @@ services:
       - db
     ports:
       - "9000:9000"
+    restart: always
 
   web:
     image: nginx:alpine
@@ -28,6 +29,7 @@ services:
       - app
     networks:
       - laravel
+    restart: always
 
   db:
     image: mysql:8.0
@@ -59,6 +61,7 @@ services:
       - "8081:80"
     networks:
       - laravel
+    restart: always
 
 volumes:
   mysql_data:
