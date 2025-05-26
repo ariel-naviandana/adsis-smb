@@ -1,30 +1,58 @@
 @extends('layouts.app')
 @section('title', 'Create Proposal')
 @section('content')
-    <h1>Create Proposal</h1>
-    <form method="POST" action="{{ route('proposals.store') }}" enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" value="{{ old('title') }}" required>
-            @error('title')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Create Proposal</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('proposals.store') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="mb-3 row">
+                                <label for="title" class="col-md-3 col-form-label text-md-end">Title</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
+                                    @error('title')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="pdf_content" class="col-md-3 col-form-label text-md-end">Upload PDF</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="pdf_content" class="form-control @error('pdf_content') is-invalid @enderror" accept="application/pdf" required>
+                                    @error('pdf_content')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="description" class="col-md-3 col-form-label text-md-end">Description</label>
+                                <div class="col-md-8">
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-0">
+                                <div class="col-md-8 offset-md-3 d-grid">
+                                    <button type="submit" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="pdf_content" class="form-label">Upload PDF</label>
-            <input type="file" name="pdf_content" class="form-control" accept="application/pdf" required>
-            @error('pdf_content')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="description" class="form-control">{{ old('description') }}</textarea>
-            @error('description')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+    </div>
 @endsection

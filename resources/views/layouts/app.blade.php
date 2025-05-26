@@ -8,9 +8,9 @@
 </head>
 <body>
     @auth
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">Laravel App</a>
+                <a class="navbar-brand" href="{{ route('home') }}">LogiPortal</a>
                 <div class="navbar-nav">
                     <a class="nav-link" href="{{ route('daily-reports.create') }}">Create Daily Report</a>
                     <a class="nav-link" href="{{ route('proposals.create') }}">Create Proposal</a>
